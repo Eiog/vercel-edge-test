@@ -1,0 +1,12 @@
+[build.environment]
+  NETLIFY_USE_PNPM = "true"
+  NODE_VERSION = "18"
+
+[build]
+  publish = "dist"
+  command = "npx pnpm i --store=node_modules/.pnpm-store && NITRO_PRESET=netlify npx pnpm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
