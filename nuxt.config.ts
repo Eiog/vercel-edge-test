@@ -1,6 +1,4 @@
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+import { resolve } from 'node:path'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { appDescription } from './constants/index'
 
@@ -52,12 +50,7 @@ export default defineNuxtConfig({
         iconDirs: [resolve(process.cwd(), 'assets/icons')],
         symbolId: 'icon-[dir]-[name]',
       }),
-      VueI18nPlugin({
-        runtimeOnly: true,
-        compositionOnly: true,
-        fullInstall: true,
-        include: resolve(dirname(fileURLToPath(import.meta.url)), './locales/**'),
-      }),
+
     ],
     resolve: {
       alias: {
