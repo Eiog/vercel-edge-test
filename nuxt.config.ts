@@ -1,6 +1,7 @@
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { appDescription } from './constants/index'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -47,6 +48,10 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [
+      createSvgIconsPlugin({
+        iconDirs: [resolve(process.cwd(), 'assets/icons')],
+        symbolId: 'icon-[dir]-[name]',
+      }),
       VueI18nPlugin({
         runtimeOnly: true,
         compositionOnly: true,
