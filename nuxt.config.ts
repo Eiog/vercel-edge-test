@@ -1,3 +1,6 @@
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { appDescription } from './constants/index'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -43,6 +46,19 @@ export default defineNuxtConfig({
         : ['@juggle/resize-observer'],
   },
   vite: {
+    plugins: [
+      VueI18nPlugin({
+        runtimeOnly: true,
+        compositionOnly: true,
+        fullInstall: true,
+        include: resolve(dirname(fileURLToPath(import.meta.url)), './locales/**'),
+      }),
+    ],
+    resolve: {
+      alias: {
+        'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
+      },
+    },
     optimizeDeps: {
       include:
         process.env.NODE_ENV === 'development'
